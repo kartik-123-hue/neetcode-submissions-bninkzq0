@@ -1,0 +1,24 @@
+class Solution {
+
+    public String encode(List<String> strs) {
+        String encode="";
+        for(String str:strs){
+            encode+=String.valueOf(str.length())+"#"+str;
+        }
+        return encode;
+    }
+
+    public List<String> decode(String str) {
+        List<String> result=new ArrayList<>();
+        for(int i=0;i<str.length();){
+            int j=i;
+            while(str.charAt(j)!='#'){
+                j++;
+            }
+            int length=Integer.parseInt(str.substring(i,j));
+            result.add(str.substring(j+1,j+1+length));
+            i=j+1+length;
+        }
+        return result;
+    }
+}
